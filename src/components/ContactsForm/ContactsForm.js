@@ -10,6 +10,7 @@ import TextField from '@mui/material/TextField';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import toast from 'react-hot-toast';
 
 export default function ContactsForm() {
   let navigate = useNavigate();
@@ -39,6 +40,7 @@ export default function ContactsForm() {
     handlerSubmitUserForm(contact);
     reset();
     console.log(contact);
+
     navigate('/contacts');
   };
 
@@ -48,8 +50,8 @@ export default function ContactsForm() {
         contactItem.name.toLocaleLowerCase() ===
         contact.name.toLocaleLowerCase()
     )
-      ? alert(`${contact.name} is already in contacts`)
-      : addContact({ name, number });
+      ? toast.error(`${contact.name} is already in contacts`)
+      : addContact({ name, number }) && toast.success('Contact added');
   };
 
   const reset = () => {
@@ -81,7 +83,6 @@ export default function ContactsForm() {
             alignItems: 'center',
           }}
         >
-          {/* <Form onSubmit={handlerSubmitUser}> */}
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
@@ -95,8 +96,8 @@ export default function ContactsForm() {
                 type="text"
                 value={name}
                 onChange={handlerInputChange}
-                // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-                // title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+                pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+                title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
               />
             </Grid>
             <Grid item xs={12}>
@@ -110,8 +111,8 @@ export default function ContactsForm() {
                 type="tel"
                 value={number}
                 onChange={handlerInputChange}
-                // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-                // title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+                pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+                title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
               />
             </Grid>
           </Grid>

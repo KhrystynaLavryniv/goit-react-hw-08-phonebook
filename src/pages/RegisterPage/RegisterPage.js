@@ -56,12 +56,7 @@ const RegisterPage = () => {
           <Typography component="h2" variant="h6">
             Register
           </Typography>
-          <Box
-            component="form"
-            noValidate
-            onSubmit={handleSubmit}
-            sx={{ mt: 3 }}
-          >
+          <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
@@ -74,6 +69,7 @@ const RegisterPage = () => {
                   value={name}
                   autoFocus
                   onChange={handleChange}
+                  pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
                 />
               </Grid>
               <Grid item xs={12}>
@@ -86,6 +82,10 @@ const RegisterPage = () => {
                   value={email}
                   autoComplete="off"
                   onChange={handleChange}
+                  inputProps={{
+                    inputMode: 'email',
+                    pattern: '([A-z0-9_.-]{1,})@([A-z0-9_.-]{1,}).([A-z]{2,8})',
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>

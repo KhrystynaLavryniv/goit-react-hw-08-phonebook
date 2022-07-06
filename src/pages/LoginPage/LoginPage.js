@@ -5,7 +5,6 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import { Link } from '../../components/Navigation/Navigation.styled';
 import Container from '@mui/material/Container';
-
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -51,12 +50,7 @@ const LoginPage = () => {
           <Typography component="h2" variant="h6">
             Login
           </Typography>
-          <Box
-            component="form"
-            onSubmit={handleSubmit}
-            noValidate
-            sx={{ mt: 1 }}
-          >
+          <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
@@ -68,6 +62,10 @@ const LoginPage = () => {
               value={email}
               onChange={handleChange}
               autoFocus
+              inputProps={{
+                inputMode: 'email',
+                pattern: '([A-z0-9_.-]{1,})@([A-z0-9_.-]{1,}).([A-z]{2,8})',
+              }}
             />
             <TextField
               margin="normal"

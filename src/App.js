@@ -1,5 +1,5 @@
 import ContactsForm from './components/ContactsForm/ContactsForm';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import Container from '@mui/material/Container';
 import { theme } from './App.styled';
@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import authOperations from './redux/auth/authOperations';
 import PrivateRoute from './routes/PrivateRoute';
 import PublicRoute from './routes/PublicRoute';
+import { Toaster } from 'react-hot-toast';
 
 const Layout = lazy(() => import('./components/Layout/Layout'));
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
@@ -35,7 +36,6 @@ export const App = () => {
             <Routes>
               <Route path="/" element={<Layout />}>
                 <Route index element={<HomePage />} />
-
                 <Route
                   path="login"
                   element={
@@ -47,7 +47,7 @@ export const App = () => {
                 <Route
                   path="register"
                   element={
-                    <PublicRoute navigateTo="/" restricted>
+                    <PublicRoute navigateTo="/contacts" restricted>
                       <RegisterPage />
                     </PublicRoute>
                   }
@@ -68,11 +68,11 @@ export const App = () => {
                     </PrivateRoute>
                   }
                 />
+                <Route path="*" element={'Sorry, but the page is not found'} />
               </Route>
-              <Route path="*" element={<Navigate to="/" />} />
             </Routes>
           )}
-          {/* <Toaster /> */}
+          <Toaster position="top-center" reverseOrder={false} />
         </Suspense>
       </Container>
     </ThemeProvider>

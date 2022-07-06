@@ -4,7 +4,6 @@ import Button from '@mui/material/Button';
 import { Link } from './ContactsPage.styled';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
-// import { useEffect } from 'react';
 
 const ContactsPage = () => {
   return (

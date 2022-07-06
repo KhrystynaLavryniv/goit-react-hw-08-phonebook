@@ -26,7 +26,6 @@ export const Navigation = () => {
           alignItems: 'center',
         }}
       >
-        {/* <Link to="/">Home</Link> */}
         {isLoggedIn && <Link to="/contacts">Contacts</Link>}
         {isLoggedIn ? <UserMenu /> : <Link to="/login">Login</Link>}
       </Container>

@@ -2,12 +2,13 @@ import { Item, ItemBtn, Contacts } from './ContactList.style';
 import { useDeleteContactsMutation } from '../../redux/contactsSlice';
 import { useSelector } from 'react-redux';
 import { useGetContactsQuery } from '../../redux/contactsSlice';
+import toast from 'react-hot-toast';
 
 const ContactList = () => {
-  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+  const token = useSelector(state => state.auth.token);
 
   const { data: contacts } = useGetContactsQuery({
-    refetchOnMountOrArgChange: isLoggedIn,
+    refetchOnMountOrArgChange: token,
   });
 
   const [deleteContacts, { isLoading: isDeleting }] =
@@ -35,7 +36,9 @@ const ContactList = () => {
             {name}: {number}
             <ItemBtn
               type="button"
-              onClick={() => deleteContacts(id)}
+              onClick={() =>
+                deleteContacts(id) && toast.success('Contact deleted')
+              }
               disabled={isDeleting}
             >
               Delete

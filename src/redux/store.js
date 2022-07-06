@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { contactsApi } from './contactsSlice';
 import { filterSlice } from './filterSlice';
 import authReducer from './auth/authSlice';
+import { setupListeners } from '@reduxjs/toolkit/query';
 import storage from 'redux-persist/lib/storage';
 import {
   persistStore,
@@ -36,5 +37,6 @@ export const store = configureStore({
   ],
   devTools: process.env.NODE_ENV === 'development',
 });
+setupListeners(store.dispatch);
 
 export const persistor = persistStore(store);

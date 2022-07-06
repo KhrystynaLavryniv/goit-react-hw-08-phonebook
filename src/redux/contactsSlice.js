@@ -13,6 +13,7 @@ export const contactsApi = createApi({
     },
   }),
   tagTypes: ['Contacts'],
+
   endpoints: builder => ({
     getContacts: builder.query({
       query: () => '/contacts',
